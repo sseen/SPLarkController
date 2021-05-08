@@ -23,10 +23,16 @@ import UIKit
 
 open class SPLarkSettingsCollectionView: UICollectionView {
     
+    let deviceWidth = UIScreen.main.bounds.width
+    //let deviceHeight = UIScreen.main.bounds.height
+    let numberOfLine:CGFloat = 3
+    let itemSpacing:CGFloat = 8
+    let paddingView:CGFloat = 0 //16
+    
     let layout = UICollectionViewFlowLayout()
     let cellIdentificator: String = "SPLarkSettingsCollectionViewCell"
     var cellSize: CGSize = CGSize.init(width: 100, height: 60)
-    var sideInset: CGFloat = 27
+    var sideInset: CGFloat = 0
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,6 +50,12 @@ open class SPLarkSettingsCollectionView: UICollectionView {
     }
     
     internal func commonInit() {
+        //
+        var cellWidth = ( deviceWidth - (CGFloat)(paddingView * 2)
+                            - (CGFloat)( (numberOfLine - 1) * itemSpacing ) ) / (CGFloat)(numberOfLine)
+        cellWidth = cellWidth.rounded(.down)
+        cellSize.width = cellWidth
+        
         self.backgroundColor = UIColor.clear
         self.decelerationRate = UIScrollView.DecelerationRate.fast
         self.delaysContentTouches = false
@@ -52,8 +64,8 @@ open class SPLarkSettingsCollectionView: UICollectionView {
         self.showsVerticalScrollIndicator = false
         
         self.layout.scrollDirection = .horizontal
-        self.layout.minimumLineSpacing = 19 / 2
-        self.layout.minimumInteritemSpacing = 19 / 2
+        self.layout.minimumLineSpacing = itemSpacing
+        self.layout.minimumInteritemSpacing = itemSpacing
         self.contentInset = UIEdgeInsets.init(top: 0, left: self.sideInset, bottom: 0, right: self.sideInset)
         
         self.register(SPLarkSettingsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellIdentificator)
@@ -64,7 +76,8 @@ open class SPLarkSettingsCollectionView: UICollectionView {
     }
     
     func layout(y: CGFloat) {
-        self.frame = CGRect.init(x: 0, y: y, width: (self.superview?.frame.width ?? 0), height: self.cellSize.height * 2 + self.layout.minimumInteritemSpacing)
+        print(y,self.superview?.frame.width,self.superview)
+        self.frame = CGRect.init(x: 0, y: y, width: (self.superview?.frame.width ?? 0), height: self.cellSize.height + self.layout.minimumInteritemSpacing)
         self.layout.itemSize = self.cellSize
     }
 }
