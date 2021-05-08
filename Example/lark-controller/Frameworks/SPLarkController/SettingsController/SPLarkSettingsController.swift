@@ -26,31 +26,55 @@ open class SPLarkSettingsController: UIViewController {
     public let titleLabel = UILabel()
     let closeButton = SPLarkSettingsCloseButton()
     let collectionView = SPLarkSettingsCollectionView()
+    var hlArray = [Bool](repeating: false, count: 4)
+    
+//    hlArray[1] = true
     
     override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { return .slide }
     
     open func settingsCount() -> Int {
-        fatalError("SPLarkSettingsController - Need implement function")
+        // fatalError("SPLarkSettingsController - Need implement function")
+        return 4
     }
     
     open func settingTitle(index: Int, highlighted: Bool) -> String {
-        fatalError("SPLarkSettingsController - Need implement function")
+        // fatalError("SPLarkSettingsController - Need implement function")
+        return "one"
     }
     
     open func settingSubtitle(index: Int, highlighted: Bool) -> String? {
-        fatalError("SPLarkSettingsController - Need implement function")
+        // fatalError("SPLarkSettingsController - Need implement function")
+        return "two"
     }
     
     open func settingHighlighted(index: Int) -> Bool {
-        fatalError("SPLarkSettingsController - Need implement function")
+        // fatalError("SPLarkSettingsController - Need implement function")
+//        var hlArray = Array(repeating: false, count: settingsCount())
+//        hlArray[index] = true
+//
+        return hlArray[index]
+//        return false
     }
     
     open func settingColorHighlighted(index: Int) -> UIColor {
-        fatalError("SPLarkSettingsController - Need implement function")
+        // fatalError("SPLarkSettingsController - Need implement function")
+        return UIColor.systemTeal
     }
     
     open func settingDidSelect(index: Int, completion: @escaping () -> ()) {
-        fatalError("SPLarkSettingsController - Need implement function")
+        // fatalError("SPLarkSettingsController - Need implement function")
+        for (ind,_) in hlArray.enumerated() {
+            if ind == index {
+                hlArray[ind] = true
+            } else {
+                hlArray[ind] = false
+            }
+        }
+        
+        self.collectionView.performBatchUpdates({
+                            let indexSet = IndexSet(integersIn: 0...0)
+                            self.collectionView.reloadSections(indexSet)
+                        }, completion: nil)
     }
     
     open func reload(index: Int) {
@@ -59,6 +83,8 @@ open class SPLarkSettingsController: UIViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
+        
+        hlArray[0] = true
         
         self.titleLabel.text = "Settings"
         self.titleLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
