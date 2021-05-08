@@ -99,6 +99,12 @@ class SPLarkPresentationController: UIPresentationController, UIGestureRecognize
 
         self.updateSnapshot()
         self.snapshotViewContainer.frame = containerView.bounds
+        let vw = self.snapshotViewContainer
+        vw.layer.shadowPath = UIBezierPath(roundedRect: vw.bounds, cornerRadius: cornerRadius).cgPath
+        vw.layer.shadowRadius = cornerRadius
+        vw.layer.shadowOffset = .zero
+        vw.layer.shadowOpacity = 1
+        vw.layer.shadowColor = UIColor.darkGray.cgColor
         window.addSubview(self.snapshotViewContainer)
         
         self.gradeView.backgroundColor = self.presentedView?.backgroundColor ?? UIColor.black

@@ -58,14 +58,14 @@ class SPLarkSettingsCollectionViewCell: UICollectionViewCell {
         self.titleLabel.numberOfLines = 0
         self.titleLabel.textAlignment = .left
         self.titleLabel.baselineAdjustment = .alignBaselines
-        self.titleLabel.textColor = UIColor.white
+        self.titleLabel.textColor = UIColor.label
         self.titleLabel.text = "Title"
         self.addSubview(self.titleLabel)
         
         self.subtitleLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         self.subtitleLabel.numberOfLines = 1
         self.subtitleLabel.textAlignment = .left
-        self.subtitleLabel.textColor = UIColor.white
+        self.subtitleLabel.textColor = UIColor.label
         self.subtitleLabel.text = "Subtitle"
         self.addSubview(self.subtitleLabel)
     }

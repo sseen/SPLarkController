@@ -31,6 +31,7 @@ open class SPLarkSettingsCollectionView: UICollectionView {
     
     let layout = UICollectionViewFlowLayout()
     let cellIdentificator: String = "SPLarkSettingsCollectionViewCell"
+    let collectionViewHeaderFooterReuseIdentifier = "SPLarkSettingsHeaderView"
     var cellSize: CGSize = CGSize.init(width: 100, height: 60)
     
     required public init?(coder aDecoder: NSCoder) {
@@ -65,18 +66,25 @@ open class SPLarkSettingsCollectionView: UICollectionView {
         self.layout.scrollDirection = .vertical
         self.layout.minimumLineSpacing = itemSpacing
         self.layout.minimumInteritemSpacing = itemSpacing
+        self.layout.headerReferenceSize = CGSize(width: self.frame.width, height: 40.0)
         self.contentInset = UIEdgeInsets.init(top: 0, left: self.sideInset, bottom: 0, right: self.sideInset)
         
         self.register(SPLarkSettingsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellIdentificator)
+        self.register(SPLarkSettingsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionViewHeaderFooterReuseIdentifier)
+
     }
     
     func dequeueCell(indexPath: IndexPath) -> SPLarkSettingsCollectionViewCell {
         return self.dequeueReusableCell(withReuseIdentifier: self.cellIdentificator, for: indexPath) as! SPLarkSettingsCollectionViewCell
     }
     
+    func dequeueHeader(indexPath: IndexPath) -> SPLarkSettingsHeaderView {
+        return self.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionViewHeaderFooterReuseIdentifier, for: indexPath)  as! SPLarkSettingsHeaderView
+    }
+    
     func layout(y: CGFloat) {
         //print(y,self.superview?.frame.width,self.superview)
-        self.frame = CGRect.init(x: 0, y: y, width: (self.superview?.frame.width ?? 0), height: self.cellSize.height * 4 + self.layout.minimumInteritemSpacing)
+        self.frame = CGRect.init(x: 0, y: y, width: (self.superview?.frame.width ?? 0), height: self.cellSize.height * 5 + self.layout.minimumInteritemSpacing * 5)
         self.layout.itemSize = self.cellSize
     }
 }

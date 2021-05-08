@@ -7,7 +7,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .darkGray
+        self.view.backgroundColor = .systemBackground
         
         self.button.setTitle("Open Controller", for: .normal)
         self.view.addSubview(self.button)
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     @objc func presentLarkController() {
         let controller = SPLarkSettingsController()
         let transitionDelegate = SPLarkTransitioningDelegate()
-        transitionDelegate.customHeight = 600
+        transitionDelegate.customHeight = 400
         controller.transitioningDelegate = transitionDelegate
         controller.modalPresentationStyle = .custom
         controller.modalPresentationCapturesStatusBarAppearance = true

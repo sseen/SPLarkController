@@ -26,10 +26,8 @@ open class SPLarkSettingsController: UIViewController {
     public let titleLabel = UILabel()
     let closeButton = SPLarkSettingsCloseButton()
     let collectionView = SPLarkSettingsCollectionView()
-    var hlArray = [[Bool]](repeating: [Bool](repeating: false, count: 5), count: 3 )
-    
-//    hlArray[1] = true
-    
+    var hlArray = [[Bool]](repeating: [Bool](repeating: false, count: 3), count: 3 )
+        
     override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { return .slide }
     
     open func settingsSecCount() -> Int {
@@ -54,11 +52,7 @@ open class SPLarkSettingsController: UIViewController {
     
     open func settingHighlighted(index: IndexPath) -> Bool {
         // fatalError("SPLarkSettingsController - Need implement function")
-//        var hlArray = Array(repeating: false, count: settingsCount())
-//        hlArray[index] = true
-//
         return hlArray[index.section][index.row]
-//        return false
     }
     
     open func settingColorHighlighted(index: Int) -> UIColor {
@@ -101,10 +95,11 @@ open class SPLarkSettingsController: UIViewController {
         
         hlArray = hlArrayNew
         
+        self.view.backgroundColor = .systemBackground
         self.titleLabel.text = "Settings"
         self.titleLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         self.titleLabel.textAlignment = .left
-        self.titleLabel.textColor = UIColor.white
+        self.titleLabel.textColor = .label
         self.titleLabel.numberOfLines = 0
         self.view.addSubview(self.titleLabel)
         
@@ -132,6 +127,32 @@ open class SPLarkSettingsController: UIViewController {
 
 extension SPLarkSettingsController: UICollectionViewDataSource, UICollectionViewDelegate {
     
+    
+    public func collectionView(_ collectionView: UICollectionView,
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch collectionView {
+        case self.collectionView:
+            switch kind {
+            
+            case UICollectionView.elementKindSectionHeader:
+                let header = self.collectionView.dequeueHeader(indexPath: indexPath)
+                header.lblTitle.text = "header"
+                return header
+                
+            case UICollectionView.elementKindSectionFooter:
+                return UICollectionReusableView()
+                
+            default:
+                assert(false, "Unexpected element kind")
+            }
+            
+            
+        default:
+            return UICollectionReusableView()
+        }
+    }
     
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
