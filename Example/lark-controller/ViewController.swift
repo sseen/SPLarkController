@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     @objc func presentLarkController() {
         let controller = SPLarkSettingsController()
         let transitionDelegate = SPLarkTransitioningDelegate()
-        transitionDelegate.customHeight = 300
+        transitionDelegate.customHeight = 600
         controller.transitioningDelegate = transitionDelegate
         controller.modalPresentationStyle = .custom
         controller.modalPresentationCapturesStatusBarAppearance = true

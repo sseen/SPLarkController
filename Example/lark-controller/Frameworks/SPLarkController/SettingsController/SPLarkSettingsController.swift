@@ -26,20 +26,25 @@ open class SPLarkSettingsController: UIViewController {
     public let titleLabel = UILabel()
     let closeButton = SPLarkSettingsCloseButton()
     let collectionView = SPLarkSettingsCollectionView()
-    var hlArray = [Bool](repeating: false, count: 4)
+    var hlArray = [[Bool]](repeating: [Bool](repeating: false, count: 5), count: 3 )
     
 //    hlArray[1] = true
     
     override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { return .slide }
     
-    open func settingsCount() -> Int {
+    open func settingsSecCount() -> Int {
         // fatalError("SPLarkSettingsController - Need implement function")
-        return 4
+        return hlArray.count
+    }
+    
+    open func settingsCount(sec:Int) -> Int {
+        // fatalError("SPLarkSettingsController - Need implement function")
+        return hlArray[sec].count
     }
     
     open func settingTitle(index: Int, highlighted: Bool) -> String {
         // fatalError("SPLarkSettingsController - Need implement function")
-        return "one"
+        return "one \(index)"
     }
     
     open func settingSubtitle(index: Int, highlighted: Bool) -> String? {
@@ -47,12 +52,12 @@ open class SPLarkSettingsController: UIViewController {
         return "two"
     }
     
-    open func settingHighlighted(index: Int) -> Bool {
+    open func settingHighlighted(index: IndexPath) -> Bool {
         // fatalError("SPLarkSettingsController - Need implement function")
 //        var hlArray = Array(repeating: false, count: settingsCount())
 //        hlArray[index] = true
 //
-        return hlArray[index]
+        return hlArray[index.section][index.row]
 //        return false
     }
     
@@ -61,20 +66,20 @@ open class SPLarkSettingsController: UIViewController {
         return UIColor.systemTeal
     }
     
-    open func settingDidSelect(index: Int, completion: @escaping () -> ()) {
+    open func settingDidSelect(index: IndexPath, completion: @escaping () -> ()) {
         // fatalError("SPLarkSettingsController - Need implement function")
-        for (ind,_) in hlArray.enumerated() {
-            if ind == index {
-                hlArray[ind] = true
+        for (ind,_) in hlArray[index.section].enumerated() {
+            if ind == index.row {
+                hlArray[index.section][ind] = true
             } else {
-                hlArray[ind] = false
+                hlArray[index.section][ind] = false
             }
         }
         
         self.collectionView.performBatchUpdates({
-                            let indexSet = IndexSet(integersIn: 0...0)
-                            self.collectionView.reloadSections(indexSet)
-                        }, completion: nil)
+            let indexSet = IndexSet(integer: index.section)
+            self.collectionView.reloadSections(indexSet)
+        }, completion: nil)
     }
     
     open func reload(index: Int) {
@@ -84,7 +89,17 @@ open class SPLarkSettingsController: UIViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         
-        hlArray[0] = true
+        let hlArrayNew = hlArray.map{
+            $0.enumerated().map { (index, element) -> Bool in
+                if index == 0 {
+                    return true
+                } else {
+                    return element
+                }
+            }
+        }
+        
+        hlArray = hlArrayNew
         
         self.titleLabel.text = "Settings"
         self.titleLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
@@ -117,10 +132,21 @@ open class SPLarkSettingsController: UIViewController {
 
 extension SPLarkSettingsController: UICollectionViewDataSource, UICollectionViewDelegate {
     
+    
+    
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        switch collectionView {
+        case self.collectionView:
+            return self.settingsSecCount()
+        default:
+            return 0
+        }
+    }
+    
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case self.collectionView:
-            return self.settingsCount()
+            return self.settingsCount(sec: section)
         default:
             return 0
         }
@@ -130,7 +156,7 @@ extension SPLarkSettingsController: UICollectionViewDataSource, UICollectionView
         switch collectionView {
         case self.collectionView:
             let cell = self.collectionView.dequeueCell(indexPath: indexPath)
-            let highlighted = self.settingHighlighted(index: indexPath.row)
+            let highlighted = self.settingHighlighted(index: indexPath)
             cell.titleLabel.text = self.settingTitle(index: indexPath.row, highlighted: highlighted)
             cell.subtitleLabel.text = self.settingSubtitle(index: indexPath.row, highlighted: highlighted)
             cell.setHighlighted(
@@ -145,8 +171,8 @@ extension SPLarkSettingsController: UICollectionViewDataSource, UICollectionView
     
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SPLarkSettingsCollectionViewCell {
-            self.settingDidSelect(index: indexPath.row) {
-                let highlighted = self.settingHighlighted(index: indexPath.row)
+            self.settingDidSelect(index: indexPath) {
+                let highlighted = self.settingHighlighted(index: indexPath)
                 cell.titleLabel.text = self.settingTitle(index: indexPath.row, highlighted: highlighted)
                 cell.subtitleLabel.text = self.settingSubtitle(index: indexPath.row, highlighted: highlighted)
                 cell.setHighlighted(

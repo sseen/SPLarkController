@@ -27,12 +27,11 @@ open class SPLarkSettingsCollectionView: UICollectionView {
     //let deviceHeight = UIScreen.main.bounds.height
     let numberOfLine:CGFloat = 3
     let itemSpacing:CGFloat = 8
-    let paddingView:CGFloat = 0 //16
+    let sideInset:CGFloat = 27 //16
     
     let layout = UICollectionViewFlowLayout()
     let cellIdentificator: String = "SPLarkSettingsCollectionViewCell"
     var cellSize: CGSize = CGSize.init(width: 100, height: 60)
-    var sideInset: CGFloat = 0
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -51,7 +50,7 @@ open class SPLarkSettingsCollectionView: UICollectionView {
     
     internal func commonInit() {
         //
-        var cellWidth = ( deviceWidth - (CGFloat)(paddingView * 2)
+        var cellWidth = ( deviceWidth - (CGFloat)(sideInset * 2)
                             - (CGFloat)( (numberOfLine - 1) * itemSpacing ) ) / (CGFloat)(numberOfLine)
         cellWidth = cellWidth.rounded(.down)
         cellSize.width = cellWidth
@@ -63,7 +62,7 @@ open class SPLarkSettingsCollectionView: UICollectionView {
         self.showsHorizontalScrollIndicator = false
         self.showsVerticalScrollIndicator = false
         
-        self.layout.scrollDirection = .horizontal
+        self.layout.scrollDirection = .vertical
         self.layout.minimumLineSpacing = itemSpacing
         self.layout.minimumInteritemSpacing = itemSpacing
         self.contentInset = UIEdgeInsets.init(top: 0, left: self.sideInset, bottom: 0, right: self.sideInset)
@@ -76,8 +75,8 @@ open class SPLarkSettingsCollectionView: UICollectionView {
     }
     
     func layout(y: CGFloat) {
-        print(y,self.superview?.frame.width,self.superview)
-        self.frame = CGRect.init(x: 0, y: y, width: (self.superview?.frame.width ?? 0), height: self.cellSize.height + self.layout.minimumInteritemSpacing)
+        //print(y,self.superview?.frame.width,self.superview)
+        self.frame = CGRect.init(x: 0, y: y, width: (self.superview?.frame.width ?? 0), height: self.cellSize.height * 4 + self.layout.minimumInteritemSpacing)
         self.layout.itemSize = self.cellSize
     }
 }
