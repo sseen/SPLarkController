@@ -15,17 +15,20 @@ class SPLarkSettingsHeaderView: UICollectionReusableView {
         self.backgroundColor = UIColor.purple
 
         // Customize here
-        self.addSubview(lblTitle)
-        lblTitle.translatesAutoresizingMaskIntoConstraints = false
+        let container = UIStackView()
+        self.addSubview(container)
+        container.translatesAutoresizingMaskIntoConstraints = false
         
         self.addConstraints([
-            lblTitle.topAnchor.constraint(equalTo: self.topAnchor),
-            lblTitle.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            lblTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            lblTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            container.topAnchor.constraint(equalTo: self.topAnchor),
+            container.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            container.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
         
         lblTitle.textColor = UIColor.label
+        
+        container.addArrangedSubview(lblTitle)
         
      }
 
