@@ -15,10 +15,18 @@ class SPLarkSettingsHeaderView: UICollectionReusableView {
         self.backgroundColor = UIColor.purple
 
         // Customize here
-        lblTitle.frame =  CGRect(x: 0, y: 0, width: 100, height: 30)
+        self.addSubview(lblTitle)
+        lblTitle.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addConstraints([
+            lblTitle.topAnchor.constraint(equalTo: self.topAnchor),
+            lblTitle.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            lblTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            lblTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+        ])
+        
         lblTitle.textColor = UIColor.label
         
-        self.addSubview(lblTitle)
      }
 
      required init?(coder aDecoder: NSCoder) {
