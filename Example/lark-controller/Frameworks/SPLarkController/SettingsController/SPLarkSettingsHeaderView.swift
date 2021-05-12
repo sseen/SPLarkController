@@ -15,6 +15,9 @@ class SPLarkSettingsHeaderView: UICollectionReusableView {
         self.backgroundColor = UIColor.purple
 
         // Customize here
+        // 为什么这种就可以直接添加 uistackview
+        // 如果用 xib 直接拖动的话，直接报错，missing constraints
+        // 当然这里也可以完全不用添加 uistackview，直接加 label 也可以的
         let container = UIStackView()
         self.addSubview(container)
         container.translatesAutoresizingMaskIntoConstraints = false

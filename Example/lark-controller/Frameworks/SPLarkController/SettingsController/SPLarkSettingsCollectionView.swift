@@ -69,15 +69,19 @@ open class SPLarkSettingsCollectionView: UICollectionView {
         self.layout.headerReferenceSize = CGSize(width: self.frame.width, height: 40.0)
         self.contentInset = UIEdgeInsets.init(top: 0, left: self.sideInset, bottom: 0, right: self.sideInset)
         
-        self.register(SPLarkSettingsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellIdentificator)
+//        self.register(SPLarkSettingsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellIdentificator)
+        self.register(UINib(nibName: String(describing: type(of: SPLarkSettingsImageLabelCell())), bundle: nil), forCellWithReuseIdentifier: cellIdentificator)
         self.register(SPLarkSettingsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionViewHeaderFooterReuseIdentifier)
 
     }
     
-    func dequeueCell(indexPath: IndexPath) -> SPLarkSettingsCollectionViewCell {
-        return self.dequeueReusableCell(withReuseIdentifier: self.cellIdentificator, for: indexPath) as! SPLarkSettingsCollectionViewCell
+//    func dequeueCell(indexPath: IndexPath) -> SPLarkSettingsCollectionViewCell {
+//        return self.dequeueReusableCell(withReuseIdentifier: self.cellIdentificator, for: indexPath) as! SPLarkSettingsCollectionViewCell
+//    }
+    func dequeueCell(indexPath: IndexPath) -> SPLarkSettingsImageLabelCell {
+        return self.dequeueReusableCell(withReuseIdentifier: self.cellIdentificator, for: indexPath) as! SPLarkSettingsImageLabelCell
     }
-    
+
     func dequeueHeader(indexPath: IndexPath) -> SPLarkSettingsHeaderView {
         return self.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionViewHeaderFooterReuseIdentifier, for: indexPath)  as! SPLarkSettingsHeaderView
     }

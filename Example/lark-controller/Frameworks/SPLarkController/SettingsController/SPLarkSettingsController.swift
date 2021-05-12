@@ -176,10 +176,18 @@ extension SPLarkSettingsController: UICollectionViewDataSource, UICollectionView
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case self.collectionView:
+//            let cell = self.collectionView.dequeueCell(indexPath: indexPath)
+//            let highlighted = self.settingHighlighted(index: indexPath)
+//            cell.titleLabel.text = self.settingTitle(index: indexPath.row, highlighted: highlighted)
+//            cell.subtitleLabel.text = self.settingSubtitle(index: indexPath.row, highlighted: highlighted)
+//            cell.setHighlighted(
+//                highlighted,
+//                color: highlighted ? self.settingColorHighlighted(index: indexPath.row) : UIColor.white.withAlphaComponent(0.1)
+//            )
+//            return cell
             let cell = self.collectionView.dequeueCell(indexPath: indexPath)
             let highlighted = self.settingHighlighted(index: indexPath)
-            cell.titleLabel.text = self.settingTitle(index: indexPath.row, highlighted: highlighted)
-            cell.subtitleLabel.text = self.settingSubtitle(index: indexPath.row, highlighted: highlighted)
+            cell.lblTitle.text = self.settingTitle(index: indexPath.row, highlighted: highlighted)
             cell.setHighlighted(
                 highlighted,
                 color: highlighted ? self.settingColorHighlighted(index: indexPath.row) : UIColor.white.withAlphaComponent(0.1)
@@ -191,11 +199,22 @@ extension SPLarkSettingsController: UICollectionViewDataSource, UICollectionView
     }
     
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? SPLarkSettingsCollectionViewCell {
+//        if let cell = collectionView.cellForItem(at: indexPath) as? SPLarkSettingsCollectionViewCell {
+//            self.settingDidSelect(index: indexPath) {
+//                let highlighted = self.settingHighlighted(index: indexPath)
+//                cell.titleLabel.text = self.settingTitle(index: indexPath.row, highlighted: highlighted)
+//                cell.subtitleLabel.text = self.settingSubtitle(index: indexPath.row, highlighted: highlighted)
+//                cell.setHighlighted(
+//                    highlighted,
+//                    color: highlighted ? self.settingColorHighlighted(index: indexPath.row) : UIColor.white.withAlphaComponent(0.1)
+//                )
+//            }
+//        }
+        if let cell = collectionView.cellForItem(at: indexPath) as? SPLarkSettingsImageLabelCell {
+            print(cell)
             self.settingDidSelect(index: indexPath) {
                 let highlighted = self.settingHighlighted(index: indexPath)
-                cell.titleLabel.text = self.settingTitle(index: indexPath.row, highlighted: highlighted)
-                cell.subtitleLabel.text = self.settingSubtitle(index: indexPath.row, highlighted: highlighted)
+                cell.lblTitle.text = self.settingTitle(index: indexPath.row, highlighted: highlighted)
                 cell.setHighlighted(
                     highlighted,
                     color: highlighted ? self.settingColorHighlighted(index: indexPath.row) : UIColor.white.withAlphaComponent(0.1)

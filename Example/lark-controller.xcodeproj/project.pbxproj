@@ -21,6 +21,9 @@
 		F462010B22CFD397003A4330 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462010A22CFD397003A4330 /* ViewController.swift */; };
 		F462011022CFD399003A4330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F462010F22CFD399003A4330 /* Assets.xcassets */; };
 		F462011322CFD399003A4330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F462011122CFD399003A4330 /* LaunchScreen.storyboard */; };
+		F87C36A0264BA5AE005A6AFA /* SPLarkSettingsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C369F264BA5AE005A6AFA /* SPLarkSettingsImageCell.swift */; };
+		F87C36A3264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C36A1264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.swift */; };
+		F87C36A4264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F87C36A2264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.xib */; };
 		F8DB9CF726467ABA0083A428 /* SPLarkSettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB9CF626467ABA0083A428 /* SPLarkSettingsHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,9 @@
 		F462010F22CFD399003A4330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F462011222CFD399003A4330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F462011422CFD399003A4330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F87C369F264BA5AE005A6AFA /* SPLarkSettingsImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLarkSettingsImageCell.swift; sourceTree = "<group>"; };
+		F87C36A1264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLarkSettingsImageLabelCell.swift; sourceTree = "<group>"; };
+		F87C36A2264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SPLarkSettingsImageLabelCell.xib; sourceTree = "<group>"; };
 		F8DB9CF626467ABA0083A428 /* SPLarkSettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLarkSettingsHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +80,9 @@
 				2BE57F8624FE47FE0087A7A8 /* SPLarkSettingsController.swift */,
 				2BE57F8724FE47FE0087A7A8 /* SPLarkSettingsCollectionView.swift */,
 				F8DB9CF626467ABA0083A428 /* SPLarkSettingsHeaderView.swift */,
+				F87C369F264BA5AE005A6AFA /* SPLarkSettingsImageCell.swift */,
+				F87C36A1264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.swift */,
+				F87C36A2264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.xib */,
 			);
 			path = SettingsController;
 			sourceTree = "<group>";
@@ -184,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F87C36A4264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.xib in Resources */,
 				F462011322CFD399003A4330 /* LaunchScreen.storyboard in Resources */,
 				F462011022CFD399003A4330 /* Assets.xcassets in Resources */,
 			);
@@ -197,12 +207,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE57F9424FE47FE0087A7A8 /* SPLarkPresentationController.swift in Sources */,
+				F87C36A3264BA5D3005A6AFA /* SPLarkSettingsImageLabelCell.swift in Sources */,
 				2BE57F9324FE47FE0087A7A8 /* SPLarkPresentingAnimationController.swift in Sources */,
 				2BE57F9224FE47FE0087A7A8 /* SPLarkSettingsCollectionView.swift in Sources */,
 				F8DB9CF726467ABA0083A428 /* SPLarkSettingsHeaderView.swift in Sources */,
 				2BE57F9724FE47FE0087A7A8 /* SPLarkControllerExtenshion.swift in Sources */,
 				F462010B22CFD397003A4330 /* ViewController.swift in Sources */,
 				2BE57F9524FE47FE0087A7A8 /* SPLarkDismissingAnimationController.swift in Sources */,
+				F87C36A0264BA5AE005A6AFA /* SPLarkSettingsImageCell.swift in Sources */,
 				2BE57F8E24FE47FE0087A7A8 /* SPLarkController.swift in Sources */,
 				F462010722CFD397003A4330 /* AppDelegate.swift in Sources */,
 				2BE57F9124FE47FE0087A7A8 /* SPLarkSettingsController.swift in Sources */,
